@@ -21,6 +21,16 @@ contract FruitMarket {
         uint quantity;
     }
 
+    mapping(address => Offer[]) public offers;
+
+    function createOffer(address producer, string memory name, uint weight, uint diameter, uint quality, uint pricePerKg) public payable {
+        uint totalCost = weight * pricePerKg * 1e18;
+        require(msg.value == totalCost, "Sent value must be equal to total cost of fruit");
+
+        Fruit memory fruit = Fruit(name, weight, diameter, quality, pricePerKg);
+        Offer memory offer = Offer(msg.sender, fruit, weight);
+        offers[producer].push(offer);
+    }
 
 
 
