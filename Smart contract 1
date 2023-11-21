@@ -7,7 +7,19 @@ contract FruitMarket {
     constructor(){
         owner_vendor = msg.sender;
     }
+   struct Fruit {
+        string name;
+        uint weight;
+        uint diameter;
+        uint quality;
+        uint pricePerKg;
+    }
 
+    struct Offer {
+        address vendor;
+        Fruit fruit;
+        uint quantity;
+    }
 
 
 
